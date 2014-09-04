@@ -44,6 +44,12 @@ Usage
 	return $response;
 
 
+Requirements
+------------
+
+Of course Laravel 4, Mapserver and MapScript must be installed
+
+
 Features (TODO)
 --------
 1. Check whether MapServer is installed or not at the requested machine
