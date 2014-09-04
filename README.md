@@ -44,7 +44,17 @@ Usage
 	return $response;
 
 
-Features
+Features (TODO)
 --------
+1. Check whether MapServer is installed or not at the requested machine
+2. Opens a mapfile
+3. Export a mapfile
+4. Return a GetCapabilities response as Illuminate\HTTP\Response
+5. Creates map image as Illuminate\HTTP\Response
+6. More to TODO...
 
-TODO
+
+Call for Collab
+---------------
+
+All GEO lovers are invited to fork and grow this project ;)
