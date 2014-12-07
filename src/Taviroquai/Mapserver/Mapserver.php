@@ -9,35 +9,35 @@ class Mapserver {
 	/**
 	 * Holds mapserver cgi path
 	 *
-	 * @var string
+	 * @var string The CGI URL where mapserver runs
 	 */
 	protected $path = '';
 
 	/**
 	 * Holds mapserver hostname
 	 *
-	 * @var string
+	 * @var string The hostname where mapserver runs
 	 */
 	protected $hostname = 'localhost';
 
 	/**
 	 * Holds mapserver hostname
 	 *
-	 * @var string
+	 * @var string The path where to save mapfiles
 	 */
 	protected $storagePath = '';
 
 	/**
-	 * Holds mapserver hostname
+	 * Holds the boolean value whether mapserver is detected or not
 	 *
-	 * @var string
+	 * @var string The boolean value
 	 */
 	protected $isInstalled = false;
 
 	/**
 	 * Holds default mapfile string
 	 *
-	 * @var string
+	 * @var string The default mapfile string
 	 */
 	protected $defaultMap = <<<EOF
 MAP
@@ -81,15 +81,15 @@ EOF;
 	/**
 	 * Holds default map template
 	 *
-	 * @var string
+	 * @var string The default template
 	 */
 	protected $defaultTemplate = "<!-- MapServer Template -->\n<img src=\"[img]\">";
 
 	/**
 	 * Creates a new MapServer instance
 	 *
-	 * @param string $hostname
-	 * @param string $uri
+	 * @param string $hostname The hostname where mapserver runs
+	 * @param string $uri The URI where mapserver responds
 	 */
 	public function __construct($hostname = 'localhost', $uri = '/cgi-bin/mapserv')
 	{
@@ -101,7 +101,7 @@ EOF;
 	/**
 	 * Get the MapServer cgi path
 	 *
-	 * @return string
+	 * @return string The CGI URL where mapserver responds
 	 */
 	public function getPath()
 	{
@@ -111,7 +111,7 @@ EOF;
 	/**
 	 * Get the default template string
 	 *
-	 * @return string
+	 * @return string The default template
 	 */
 	public function getDefaultTemplate()
 	{
@@ -120,7 +120,8 @@ EOF;
 
 	/**
 	 * Set storage path
-	 *
+     * 
+     * @param string $path The storage path
 	 */
 	public function setStoragePath($path = './userdata')
 	{
@@ -133,7 +134,7 @@ EOF;
 	/**
 	 * Get storage path
 	 *
-	 * @return string
+	 * @return string The storage full path
 	 */
 	public function getStoragePath()
 	{
@@ -143,7 +144,7 @@ EOF;
 	/**
 	 * Checks whether MapServer CGI is installed or not
 	 *
-	 * @return boolean
+	 * @return boolean Whether mapserver is detected or not
 	 */
 	public function isInstalled()
 	{
@@ -170,7 +171,7 @@ EOF;
 	/**
 	 * Check whether mapscript extension is loaded or not
 	 *
-	 * @return boolean
+	 * @return boolean Whether local mapscript extension is exists or not
 	 */
 	public function mapscriptExists()
 	{
@@ -180,7 +181,7 @@ EOF;
 	/**
 	 * Returns the MapServer version as integer
 	 *
-	 * @return integer
+	 * @return integer The local mapserver version
 	 */
 	public function getVersion()
 	{
@@ -189,8 +190,10 @@ EOF;
 
 	/**
 	 * Returns the map capabilities
+     * 
+     * @param \mapObj $map The map instance
 	 *
-	 * @return string
+	 * @return string The capabilities response
 	 */
 	public function getCapabilitiesResponse(\mapObj $map)
 	{
@@ -212,8 +215,12 @@ EOF;
 
 	/**
 	 * Creates a new map - mapscript object
+     * 
+     * @param string $name         The name for the map
+     * @param string $mapfilePath  The mapfile full path
+     * @param string $templatePath The template path
 	 *
-	 * @return ms_mapObj
+	 * @return \mapObj The created map object
 	 */
 	public function createMap($name, $mapfilePath, $templatePath)
 	{
@@ -234,9 +241,10 @@ EOF;
 	/**
 	 * Creates an image response from map
 	 *
-	 * @param \mapObj $map
-	 * @param string $imagePath
-	 * @return \Illuminate\Http\Response
+	 * @param \mapObj $map       The map object
+	 * @param string  $imagePath The path where to save the image
+     * 
+	 * @return \Illuminate\Http\Response The image response
 	 */
 	public function getImageResponse(\mapObj $map, $imagePath = '/tmp/', $imageURL = '/tmp/')
 	{
