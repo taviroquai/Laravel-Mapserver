@@ -19,7 +19,9 @@ Add Service Provider on app/config/app.php
 	),
 ```
 
-Run php composer.phar update
+```
+php composer.phar update
+```
 
 Usage
 -----
@@ -30,8 +32,8 @@ Usage
 	// Create a new map object (mapObj)
 	$map = $mapserver->createMap(
 		'test',
-		storage_path() . '/userdata/default.map',
-		storage_path() . '/userdata/template.html'
+		storage_path('default.map'),
+		storage_path('template.html')
 	);
 
 	// Return WMS capabilities
