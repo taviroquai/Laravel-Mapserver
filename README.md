@@ -7,7 +7,7 @@ Install
 Add to composer.json
 ```php
 	require: {
-		"taviroquai/mapserver": "dev-master"
+		"taviroquai/mapserver": "~2.0"
 	}
 ```
 
@@ -27,7 +27,7 @@ Usage
 -----
 ```php
 	// Create a MapServer instance
-	$mapserver = new Taviroquai\Mapserver\Mapserver();
+	$mapserver = new \Taviroquai\Mapserver\Mapserver();
 
 	// Create a new map object (mapObj)
 	$map = $mapserver->createMap(
@@ -48,7 +48,7 @@ Usage
 Requirements
 ------------
 
-Of course Laravel 4, Mapserver and MapScript must be installed
+Of course Laravel 5, Mapserver and MapScript must be installed
 
 
 Features
