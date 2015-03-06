@@ -1,6 +1,7 @@
 <?php namespace Taviroquai\Mapserver;
 
 use Illuminate\Support\ServiceProvider;
+use Taviroquai\Mapserver\Mapserver;
 
 class MapserverServiceProvider extends ServiceProvider {
 
@@ -12,23 +13,21 @@ class MapserverServiceProvider extends ServiceProvider {
 	protected $defer = false;
 
 	/**
-	 * Bootstrap the application events.
-	 *
-	 * @return void
-	 */
-	public function boot()
-	{
-		$this->package('taviroquai/mapserver');
-	}
-
-	/**
 	 * Register the service provider.
 	 *
 	 * @return void
 	 */
 	public function register()
 	{
-		//
+        $hostname = !empty($this->app['config']['mapserver.hostname']) ?
+                $this->app['config']['mapserver.hostname']
+                : 'localhost';
+        $uri = !empty($this->app['config']['mapserver.uri']) ?
+                $this->app['config']['mapserver.uri']
+                : '/cgi-bin/mapserv';
+		$this->app->singleton('mapserver', function() {
+            return new Mapserver($hostname, $uri);
+        });
 	}
 
 	/**
